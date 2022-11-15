@@ -26,3 +26,11 @@ RSpec.describe "papers/edit", type: :view do
     end
   end
 end
+
+RSpec.describe "papers/edit", type: :feature do
+  it "shoukd allow the selection of authors" do
+    @itBook = FactoryBot.create :paper
+    visit edit_paper_path(@itBook)
+    expect(page).to have_css('select[multiple]')
+  end
+end
