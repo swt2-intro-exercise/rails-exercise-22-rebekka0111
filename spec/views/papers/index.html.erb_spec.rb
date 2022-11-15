@@ -1,5 +1,4 @@
 require 'rails_helper'
-
 RSpec.describe "papers/index", type: :view do
   before(:each) do
     assign(:papers, [
@@ -22,5 +21,20 @@ RSpec.describe "papers/index", type: :view do
     assert_select cell_selector, text: Regexp.new("Title".to_s), count: 2
     assert_select cell_selector, text: Regexp.new("Venue".to_s), count: 2
     assert_select cell_selector, text: Regexp.new(2.to_s), count: 2
+  end
+end
+
+RSpec.describe "mytest", type: :feature do
+  it "should have an link to edit a paper" do
+    @itBook = FactoryBot.create :paper
+
+    visit papers_path
+    expect(page).to have_link('Edit')
+  end
+
+  it "should have an link to delete a paper" do
+    @itBook = FactoryBot.create :paper
+    visit papers_path
+    expect(page).to have_link('Delete')
   end
 end
