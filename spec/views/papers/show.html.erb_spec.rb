@@ -16,3 +16,13 @@ RSpec.describe "papers/show", type: :view do
     expect(rendered).to match(/2/)
   end
 end
+
+RSpec.describe "papers/show", type: :feature do
+  it "should display the full name of the author" do
+    @itBook = FactoryBot.create :paper
+    visit papers_path
+    @itBook.authors.each do |author|
+      expect(page).to have_text(author.name)
+    end
+  end
+end
